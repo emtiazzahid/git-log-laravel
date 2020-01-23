@@ -1,0 +1,30 @@
+{
+    "name": "emtiazzahid/git-log-laravel",
+    "description": "Git Log for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Md. Emtiaz Zahid",
+            "email": "emtiazzahid@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "EmtiazZahid\\GitLogLaravel\\GitLogServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "classmap": [
+            "src/controllers"
+        ],
+        "psr-0": {
+            "EmtiazZahid\\GitLogLaravel\\": "src/"
+        }
+    }
+}
