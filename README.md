@@ -7,6 +7,7 @@ Git Log Laravel
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7be7a05b07c94f319ec35f95a4d64074)](https://www.codacy.com/app/emtiazzahid/git-log-laravel.svg)
 [![Author](https://img.shields.io/badge/author-@emtiaz_zahid-blue.svg)](https://twitter.com/emtiaz_zahid)
 
+![capture d ecran 2020-1-23 a 10 37 18](https://github.com/emtiazzahid/git-log-laravel/blob/master/src/Example/screenshot.png?raw=true)
 
 TL;DR
 -----
