@@ -52,7 +52,7 @@ class GitLogLaravelController extends Controller
         $process->run();
 
         if (!$process->isSuccessful()) {
-            throw new \Symfony\Component\Process\Exception\ProcessFailedException($process);
+            return $process->getErrorOutput();
         }
 
         return $process->getOutput();

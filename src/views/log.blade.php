@@ -41,45 +41,50 @@
 
 <div class="container-fluid pt-3">
     <div class="row justify-content-md-center">
-        <div class="card col-md-8 col-lg-8">
-            <div class="card-body">
-                <main role="main">
-                    <h2>History</h2>
-                    <div class="table-responsive">
-                        <table class="table table-hover table-sm">
-                            <thead>
-                            <tr>
-                                <th>Commits</th>
-                                <th>Date</th>
-                                <th>Author</th>
-                                <th>Hash</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($records as $record)
-                                <tr onclick="return getFiles('{{ $record['hash'] }}')" style="cursor: context-menu;">
-                                    <td>{{ $record['message'] }}</td>
-                                    <td>{{ $record['date'] }}</td>
-                                    <td>{{ $record['author'] }}</td>
-                                    <td>{{ $record['hash'] }}</td>
+        @if(count($records[0]) == 1)
+            <div class="alert alert-danger" role="alert" data-mdb-color="danger">
+                {{ \Illuminate\Support\Arr::get($records, '0.message') }}
+            </div>
+        @else
+            <div class="card col-md-8 col-lg-8">
+                <div class="card-body">
+                    <main role="main">
+                        <h2>History (click for details)</h2>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-sm">
+                                <thead>
+                                <tr>
+                                    <th>Commits</th>
+                                    <th>Date</th>
+                                    <th>Author</th>
+                                    <th>Hash</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </main>
+                                </thead>
+                                <tbody>
+                                @foreach($records as $record)
+                                    <tr onclick="return getFiles('{{ $record['hash'] }}')" style="cursor: context-menu;">
+                                        <td>{{ $record['message'] }}</td>
+                                        <td>{{ $record['date'] }}</td>
+                                        <td>{{ $record['author'] }}</td>
+                                        <td>{{ $record['hash'] }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </main>
+                </div>
             </div>
-        </div>
-        <div class="card col-md-3 col-lg-3">
-            <div class="card-body">
-                <main>
-                    <div class="container pt-3">
-                        <div id="treeview"></div>
-                    </div>
-                </main>
+            <div class="card col-md-3 col-lg-3">
+                <div class="card-body">
+                    <main>
+                        <div class="container pt-3">
+                            <div id="treeview"></div>
+                        </div>
+                    </main>
+                </div>
             </div>
-        </div>
-
+        @endif
     </div>
 </div>
 
@@ -92,24 +97,24 @@
 
 <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 <script>
-  function getFiles(hash) {
-    $.ajax({
-      type: "get",
-      url: "/git_log?token={{ csrf_token() }}",
-      data: {
-        hash: hash
-      },
-      success: function (data){
-        $('#treeview').empty();
-        for (let i = 0; i < data.length; i++) {
-          $('#treeview').append(data[i]+'<br>');
-        }
-      },
-      error: function (xhr, ajaxOptions, thrownError){
+    function getFiles(hash) {
+        $.ajax({
+            type: "get",
+            url: "/git_log?token={{ csrf_token() }}",
+            data: {
+                hash: hash
+            },
+            success: function (data){
+                $('#treeview').empty();
+                for (let i = 0; i < data.length; i++) {
+                    $('#treeview').append(data[i]+'<br>');
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError){
 
-      }
-    });
-    return false;
-  }
+            }
+        });
+        return false;
+    }
 </script>
 </html>
