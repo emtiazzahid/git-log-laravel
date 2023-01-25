@@ -1,30 +1,67 @@
 {
     "name": "emtiazzahid/git-log-laravel",
-    "description": "Git Log for Laravel",
-    "type": "library",
+    "description": "Git Logs for Laravel",
+    "homepage": "https://github.com/emtiazzahid/git-log-laravel",
     "license": "MIT",
+    "type": "laravel-package",
+    "keywords": [
+        "log",
+        "git-log",
+        "git-log-view",
+        "git-log-laravel",
+        "logging",
+        "laravel",
+        "lumen"
+    ],
     "authors": [
         {
             "name": "Md. Emtiaz Zahid",
-            "email": "emtiazzahid@gmail.com"
+            "email": "emtiazzahid@gmail.com",
+            "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=5.4.0"
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src"
+        ],
+        "psr-4": {
+            "EmtiazZahid\\GitLogLaravel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EmtiazZahid\\GitLogLaravel\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
     },
     "extra": {
         "laravel": {
             "providers": [
-                "EmtiazZahid\\GitLogLaravel\\GitLogServiceProvider"
-            ]
+                "EmtiazZahid\\GitLogLaravel\\GitLogLaravelServiceProvider"
+            ],
+            "aliases": {
+                "GitLogLaravel": "EmtiazZahid\\GitLogLaravel\\GitLogLaravelFacade"
+            }
         }
     },
-    "autoload": {
-        "classmap": [
-            "src/controllers"
-        ],
-        "psr-0": {
-            "EmtiazZahid\\GitLogLaravel\\": "src/"
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
